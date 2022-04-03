@@ -1,0 +1,3098 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/15/2022 11:44:25 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="CAROL-NOTE"
+  DTS:CreatorName="CAROL-NOTE\Carol"
+  DTS:DTSID="{796EAE2F-EF62-40FA-9906-60E4D145ED0B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.94"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Dimensões DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{4DD11D64-1E45-496F-815E-2CB47755A1FA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Dimensões"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Contêiner da Sequência"
+      DTS:DTSID="{46aac479-7939-4f6d-a556-9ee0e4a78b85}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dimensões">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Dimensões\Gerar Tabela Campeoes"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{812f75c6-dc06-4691-8f2d-5771f511ea3a}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gerar Tabela Campeoes"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="CAMPEOES"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[CAMPEOES]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Connections[OleDbConnection]"
+                      connectionManagerID="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].Columns[championId]"
+                          cachedDataType="i4"
+                          cachedName="championId"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[championId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[championId]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].Columns[name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].Columns[type1]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="type1"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[type1]"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[type1]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].Columns[type2]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="type2"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[type2]"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[type2]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].Columns[image]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="image"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[championId]"
+                          dataType="i4"
+                          name="championId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[type1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="type1" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[type2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="type2" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[CAMPEOES]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{A95B476C-E392-40ED-91BE-B1DF01EBF205}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[championId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[championId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[championId]"
+                          name="championId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[type1]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[type1]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[type1]"
+                          name="type1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[type2]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[type2]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[type2]"
+                          name="type2"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          name="image"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[championId]"
+                          dataType="i4"
+                          name="championId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[type1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="type1" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[type2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="type2" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[championId]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[championId]"
+                          name="championId" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[type1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[type1]"
+                          name="type1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[type2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[type2]"
+                          name="type2" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          name="image" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Campeoes.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Dimensões\Gerar Tabela Feitiços"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{b1c2f720-c34b-4bf1-8fb3-8dba7db089fa}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gerar Tabela Feitiços"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="FEITICOS"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[FEITICOS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Connections[OleDbConnection]"
+                      connectionManagerID="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].Columns[summonerId]"
+                          cachedDataType="i4"
+                          cachedName="summonerId"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[summonerId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[summonerId]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].Columns[name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].Columns[image]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="image"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[summonerId]"
+                          dataType="i4"
+                          name="summonerId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[FEITICOS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{A95B476C-E392-40ED-91BE-B1DF01EBF205}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[summonerId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[summonerId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[summonerId]"
+                          name="summonerId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          name="image"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[summonerId]"
+                          dataType="i4"
+                          name="summonerId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[summonerId]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[summonerId]"
+                          name="summonerId" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          name="image" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+                  description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+                  name="Substituir Caracteres &quot;ƒÂ&quot; Name"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]"
+                      description="Entrada para a Transformação Coluna Derivada"
+                      name="Entrada de Coluna Derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada].Columns[name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="name"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              name="Expression">[REPLACE](#{Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]},"ƒÂ","")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACE(name,"ƒÂ","")</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Coluna Derivada]"
+                      description="Saída Padrão da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      name="Saída de Coluna Derivada"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada]"
+                      description="Saída de Erro da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Coluna Derivada"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Feitiços.Paths[Saída de Coluna Derivada]"
+                  endId="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Coluna Derivada"
+                  startId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Coluna Derivada]" />
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Feitiços.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Dimensões\Gerar Tabela Filas"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{dd5b3572-d668-4013-a7ef-58f8fe96aad9}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gerar Tabela Filas"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Filas\FILAS"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="FILAS"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[FILAS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Connections[OleDbConnection]"
+                      connectionManagerID="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].Columns[description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="description"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[description]"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[description]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].Columns[queueId]"
+                          cachedDataType="i4"
+                          cachedName="queueId"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[queueId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[queueId]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].Columns[map]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="map"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[map]"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[map]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[queueId]"
+                          dataType="i4"
+                          name="queueId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[map]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="map" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="description" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\FILAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\FILAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\FILAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[FILAS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{A95B476C-E392-40ED-91BE-B1DF01EBF205}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[description]"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[description]"
+                          name="description"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[queueId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[queueId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[queueId]"
+                          name="queueId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[map]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[map]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[map]"
+                          name="map"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="description" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[queueId]"
+                          dataType="i4"
+                          name="queueId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[map]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="map" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[queueId]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[queueId]"
+                          name="queueId" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[map]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[map]"
+                          name="map" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[description]"
+                          name="description" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Filas.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Dimensões\Gerar Tabela Filas\FILAS.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Dimensões\Gerar Tabela Itens"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{6fba3edf-8b3e-455c-a353-a036158f14cd}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gerar Tabela Itens"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Itens\ITENS"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="ITENS"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[ITENS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Connections[OleDbConnection]"
+                      connectionManagerID="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].Columns[itemId]"
+                          cachedDataType="i4"
+                          cachedName="itemId"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].ExternalColumns[itemId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[itemId]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].Columns[name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].Columns[image]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="image"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].ExternalColumns[itemId]"
+                          dataType="i4"
+                          name="itemId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\ITENS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\ITENS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\ITENS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[ITENS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{A95B476C-E392-40ED-91BE-B1DF01EBF205}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[itemId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[itemId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[itemId]"
+                          name="itemId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          name="image"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[itemId]"
+                          dataType="i4"
+                          name="itemId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[itemId]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[itemId]"
+                          name="itemId" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          name="image" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Coluna Derivada;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+                  description="Cria novos valores de coluna aplicando expressões a colunas de entrada da transformação. Crie novas colunas ou substitua as existentes. Por exemplo, concatene os valores das colunas 'first name' e 'last name' para formar uma coluna 'full name'."
+                  name="Substituir Caracteres &quot;ƒÂ&quot; Name"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]"
+                      description="Entrada para a Transformação Coluna Derivada"
+                      name="Entrada de Coluna Derivada">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada].Columns[name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="name"
+                          errorOrTruncationOperation="Computação"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão de Coluna Derivada"
+                              name="Expression">[REPLACE](#{Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]},"ƒÂ","")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Expressão Amigável de Coluna Derivada"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACE(name,"ƒÂ","")</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Coluna Derivada]"
+                      description="Saída Padrão da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      name="Saída de Coluna Derivada"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada]"
+                      description="Saída de Erro da Transformação Coluna Derivada"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Coluna Derivada"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Erro de Coluna Derivada].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Itens.Paths[Saída de Coluna Derivada]"
+                  endId="Package\Dimensões\Gerar Tabela Itens\ITENS.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Coluna Derivada"
+                  startId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Outputs[Saída de Coluna Derivada]" />
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Itens.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name.Inputs[Entrada de Coluna Derivada]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Dimensões\Gerar Tabela Lanes"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{b2069816-b588-48dc-9da3-3aa30cad1ee1}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gerar Tabela Lanes"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Lanes\LANES"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="LANES"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[LANES]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Connections[OleDbConnection]"
+                      connectionManagerID="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].Columns[lane]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="lane"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].ExternalColumns[lane]"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[lane]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].Columns[name]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="name"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].Columns[image]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="200"
+                          cachedName="image"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].ExternalColumns[lane]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="lane" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\LANES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\LANES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\LANES.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[LANES]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{A95B476C-E392-40ED-91BE-B1DF01EBF205}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[lane]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[lane]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[lane]"
+                          name="lane"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[name]"
+                          name="name"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          length="200"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[image]"
+                          name="image"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[lane]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="lane" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="name" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          name="image" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[lane]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[lane]"
+                          name="lane" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[name]"
+                          name="name" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          codePage="1252"
+                          dataType="str"
+                          length="200"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[image]"
+                          name="image" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Lanes.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Dimensões\Gerar Tabela Lanes\LANES.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Dimensões\Gerar Tabela Mapas"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{76bf9331-c8ef-48f1-a398-99aeb66eaa52}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gerar Tabela Mapas"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="MAPAS"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[MAPAS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Connections[OleDbConnection]"
+                      connectionManagerID="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].Columns[mapId]"
+                          cachedDataType="i4"
+                          cachedName="mapId"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[mapId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[mapId]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].Columns[mapName]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="mapName"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[mapName]"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[mapName]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].Columns[notes]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="notes"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[notes]"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[notes]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[mapId]"
+                          dataType="i4"
+                          name="mapId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[mapName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="mapName" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB].ExternalColumns[notes]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="notes" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[MAPAS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{A95B476C-E392-40ED-91BE-B1DF01EBF205}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[mapId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[mapId]"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[mapId]"
+                          name="mapId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[mapName]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[mapName]"
+                          length="50"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[mapName]"
+                          name="mapName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[notes]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[notes]"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[notes]"
+                          name="notes"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[mapId]"
+                          dataType="i4"
+                          name="mapId" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[mapName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="mapName" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[notes]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="notes" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[mapId]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[mapId]"
+                          name="mapId" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[mapName]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[mapName]"
+                          name="mapName" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[notes]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[notes]"
+                          name="notes" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Mapas.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Dimensões\Gerar Tabela Mapas\MAPAS.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Dimensões\Gerar Tabela Modos"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Tarefa Fluxo de Dados"
+          DTS:DTSID="{34fc8dc0-22dc-47fe-a834-217b97ffe456}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Gerar Tabela Modos"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Modos\MODOS"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+                  description="Destino OLE DB"
+                  name="MODOS"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[MODOS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Connections[OleDbConnection]"
+                      connectionManagerID="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS_DW]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB]"
+                      errorOrTruncationOperation="Inserir"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="Entrada de Destino OLE DB">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB].Columns[gameMode]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="20"
+                          cachedName="gameMode"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[gameMode]"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[gameMode]" />
+                        <inputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB].Columns[description]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="description"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[description]"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[description]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[gameMode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="gameMode" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB].ExternalColumns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="description" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Outputs[Saída de Erro de Destino OLE DB]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Saída de Erro de Destino OLE DB"
+                      synchronousInputId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\MODOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\MODOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\MODOS.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+                  description="Origem OLE DB"
+                  name="Origem OLE DB"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowset">[dbo].[MODOS]</property>
+                    <property
+                      dataType="System.String"
+                      description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="O comando SQL a ser executado."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.String"
+                      description="A variável que contém o comando SQL a ser executado."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Especifica o modo usado para acessar o banco de dados."
+                      name="AccessMode"
+                      typeConverter="AccessMode">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Connections[OleDbConnection]"
+                      connectionManagerID="{A95B476C-E392-40ED-91BE-B1DF01EBF205}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CAROL-NOTE.LEAGUE_OF_LEGENDS]"
+                      description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                      name="Saída de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[gameMode]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[gameMode]"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[gameMode]"
+                          name="gameMode"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversão"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[description]"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[description]"
+                          name="description"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[gameMode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          name="gameMode" />
+                        <externalMetadataColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="description" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                      isErrorOut="true"
+                      name="Saída de Erro de Origem OLE DB">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[gameMode]"
+                          codePage="1252"
+                          dataType="str"
+                          length="20"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[gameMode]"
+                          name="gameMode" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[description]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[description]"
+                          name="description" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Dimensões\Gerar Tabela Modos.Paths[Saída de Origem OLE DB]"
+                  endId="Package\Dimensões\Gerar Tabela Modos\MODOS.Inputs[Entrada de Destino OLE DB]"
+                  name="Saída de Origem OLE DB"
+                  startId="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Dimensões"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{2b5078a8-32d8-4648-bb67-3d288b8d6429}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Dimensões"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{03B675AE-A6B6-4781-9A2B-BD21BE1116D7}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE MODOS&#xA;GO&#xA;&#xA;TRUNCATE TABLE MAPAS&#xA;GO&#xA;&#xA;TRUNCATE TABLE FILAS&#xA;GO&#xA;&#xA;TRUNCATE TABLE CAMPEOES&#xA;GO&#xA;&#xA;TRUNCATE TABLE ITENS&#xA;GO&#xA;&#xA;TRUNCATE TABLE FEITICOS&#xA;GO&#xA;&#xA;TRUNCATE TABLE LANES&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restrição]"
+      DTS:CreationName=""
+      DTS:DTSID="{7B5ACDEC-1444-4D89-87E4-B9884E6FCD68}"
+      DTS:From="Package\Truncate Dimensões"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restrição"
+      DTS:To="Package\Dimensões" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta seção CDATA contém as informações de layout do pacote. A seção inclui informações como coordenadas (x,y), largura e altura.-->
+<!--Se você editar manualmente esta seção e cometer algum erro, poderá excluí-la. -->
+<!--O pacote ainda poderá ser carregado normalmente, mas as informações de layout anteriores serão perdidas e o designer reorganizará automaticamente os elementos na superfície de design.-->
+<Objects
+  Version="8">
+  <!--Cada nó abaixo conterá propriedades que não afetam o comportamento em tempo de execução.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="192.8,41.6"
+          Id="Package\Dimensões\Gerar Tabela Campeoes"
+          TopLeft="9.33334949281405,175.520000975291" />
+        <NodeLayout
+          Size="178.4,41.6"
+          Id="Package\Dimensões\Gerar Tabela Feitiços"
+          TopLeft="15.866685236824,283.306668314192" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Dimensões\Gerar Tabela Filas"
+          TopLeft="20.5333518769998,120.320002132416" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Dimensões\Gerar Tabela Itens"
+          TopLeft="22.6666756206085,229.920001223246" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Dimensões\Gerar Tabela Lanes"
+          TopLeft="19.6000113646184,337.120000396729" />
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Mapas"
+          TopLeft="19.4666757795541,61.706668314192" />
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Modos"
+          TopLeft="18.0000003973642,7.09333391740586" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="208,391.2"
+          Size="208,434.4"
+          Id="Package\Dimensões"
+          TopLeft="139.999996821086,76.6400001322429" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\Truncate Dimensões"
+          TopLeft="155.333327160942,11.8399932721457" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restrição]"
+          TopLeft="243.266661991014,53.4399932721457">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.2000068600972"
+              Start="0,0"
+              End="0,15.7000068600972">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.7000068600972" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Dimensões\Gerar Tabela Campeoes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB"
+          TopLeft="69.99999721845,15.2533334545559" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES"
+          TopLeft="75.2,128.8" />
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Campeoes.Paths[Saída de Origem OLE DB]"
+          TopLeft="145.399998609225,56.8533334545559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71.9466665454441"
+              Start="0,0"
+              End="0,64.4466665454441">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.4466665454441" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Campeoes\CAMPEOES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Campeoes\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dimensões\Gerar Tabela Feitiços">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB"
+          TopLeft="86.79999721845,20.0533334545559" />
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS"
+          TopLeft="102.4,177.6" />
+        <NodeLayout
+          Size="228.8,41.6"
+          Id="Package\Dimensões\Gerar Tabela Feitiços\Substituir Caracteres &quot;ƒÂ&quot; Name"
+          TopLeft="57.1999972184499,91.2" />
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Feitiços.Paths[Saída de Origem OLE DB]"
+          TopLeft="167.59999721845,61.6533334545559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.5466665454441"
+              Start="0,0"
+              End="0,22.0466665454441">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0466665454441" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Feitiços.Paths[Saída de Coluna Derivada]"
+          TopLeft="168.599998609225,132.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.8"
+              Start="0,0"
+              End="0,37.3">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.3" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Feitiços\FEITICOS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Feitiços\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dimensões\Gerar Tabela Filas">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="107.2,41.6"
+          Id="Package\Dimensões\Gerar Tabela Filas\FILAS"
+          TopLeft="86.3999972979228,109.920000892639" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB"
+          TopLeft="69.99999721845,15.2533334545559" />
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Filas.Paths[Saída de Origem OLE DB]"
+          TopLeft="143.399997258186,56.8533334545559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.0666674380831"
+              Start="0,0"
+              End="0,45.5666674380831">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5666674380831" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Filas\FILAS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Filas\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dimensões\Gerar Tabela Itens">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB"
+          TopLeft="83.99999666214,12.4800000991821" />
+        <NodeLayout
+          Size="108.8,41.6"
+          Id="Package\Dimensões\Gerar Tabela Itens\ITENS"
+          TopLeft="98.7999996026357,160.746667124007" />
+        <NodeLayout
+          Size="228.8,41.6"
+          Id="Package\Dimensões\Gerar Tabela Itens\Substituir Caracteres &quot;ƒÂ&quot; Name"
+          TopLeft="40.6666650507186,84.8533323800829" />
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Itens.Paths[Saída de Origem OLE DB]"
+          TopLeft="157.933330856429,54.0800000991821">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.7733322809008"
+              Start="0,0"
+              End="0,23.2733322809008">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.2733322809008" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Itens.Paths[Saída de Coluna Derivada]"
+          TopLeft="154.133332326677,126.453332380083">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34.2933347439236"
+              Start="0,0"
+              End="0,26.7933347439236">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.7933347439236" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Itens\ITENS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Itens\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dimensões\Gerar Tabela Lanes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB"
+          TopLeft="69.99999721845,15.2533334545559" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Dimensões\Gerar Tabela Lanes\LANES"
+          TopLeft="85.6,111.2" />
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Lanes.Paths[Saída de Origem OLE DB]"
+          TopLeft="144.399998609225,56.8533334545559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.3466665454441"
+              Start="0,0"
+              End="0,46.8466665454441">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.8466665454441" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Lanes\LANES">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Lanes\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dimensões\Gerar Tabela Mapas">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="115.2,41.6"
+          Id="Package\Dimensões\Gerar Tabela Mapas\MAPAS"
+          TopLeft="83.1999972979228,109.920000892639" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB"
+          TopLeft="69.99999721845,15.2533334545559" />
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Mapas.Paths[Saída de Origem OLE DB]"
+          TopLeft="143.799997258186,56.8533334545559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.0666674380831"
+              Start="0,0"
+              End="0,45.5666674380831">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5666674380831" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Mapas\MAPAS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Mapas\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Dimensões\Gerar Tabela Modos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB"
+          TopLeft="69.99999721845,15.2533334545559" />
+        <NodeLayout
+          Size="117.6,41.6"
+          Id="Package\Dimensões\Gerar Tabela Modos\MODOS"
+          TopLeft="85.3333299424914,111.626667553796" />
+        <EdgeLayout
+          Id="Package\Dimensões\Gerar Tabela Modos.Paths[Saída de Origem OLE DB]"
+          TopLeft="145.466663580471,56.8533334545559">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.7733340992396"
+              Start="0,0"
+              End="0,47.2733340992396">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.2733340992396" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Modos\MODOS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Dimensões\Gerar Tabela Modos\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
