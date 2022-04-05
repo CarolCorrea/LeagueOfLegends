@@ -24,8 +24,8 @@ Nesse projeto utilizamos as APIs:
 - MATCH-V5 (Get Match by MatchId)
 
 Pré-requisitos para utilização das APIs:
-1º. Criar uma conta e fazer login.
-2º. Acessar o menu "Dashboard" e gerar uma nova API Key. Esta chave é usada para desenvolvimento, portanto expira em 24h. Após esse período é necessário gerar uma nova chave.
+- 1º. Criar uma conta e fazer login.
+- 2º. Acessar o menu "Dashboard" e gerar uma nova API Key. Esta chave é usada para desenvolvimento, portanto expira em 24h. Após esse período é necessário gerar uma nova chave.
 
 <br />
 
