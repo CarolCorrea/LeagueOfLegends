@@ -6,7 +6,7 @@ Link Projeto PowerBI: https://app.powerbi.com/view?r=eyJrIjoiYmZmMGNmZDUtYTA0Mi0
 <br />
 
 ## Pré-requisitos
-Instalação do Visual Studio e SQL Server.
+Instalação do Visual Studio, SQL Server e Power BI.
 
 <br />
 
